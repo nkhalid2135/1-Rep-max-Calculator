@@ -30,24 +30,24 @@ public class Gui {
 		/**
 		 *  Two textfields to imput a weight and the number of reps done
 		 */
-		JTextField weightText = new JTextField();
-			weightText.setSize(100,100);
+		JTextField weightText = new JTextField("0");
+			
 			topPanel.add(weightText);
 			//double weight = 0;
 			try{
 				weight = Double.parseDouble(weightText.getText());
 			}catch(NumberFormatException e){
 				System.out.println("Not a number you dumb meathead!");
-			};
+			}
 		
-		JTextField repsText = new JTextField();
+		JTextField repsText = new JTextField("0");
 			topPanel.add(repsText);
 			//int reps = 0;
 			try{
 				 reps = Integer.parseInt(weightText.getText());
 			}catch(NumberFormatException e){
 				System.out.println("Not a number you dumb meathead!");
-			};
+			}
 		/**
 		 * dropDown menu to select which equation is to be used
 		 */
@@ -61,17 +61,21 @@ public class Gui {
 		JButton calculateButton = new JButton("Calculate 1RM");
 			topPanel.add(calculateButton);
 			calculateButton.addActionListener(new ActionListener(){
+				
 		        @Override
 		        public void actionPerformed(ActionEvent e){
+		        	
 		        	String checker = (String) options.getSelectedItem();
 		            if(checker.equals("Epley")){
 		            	maxCalc.calculateMaxEpley(weight, reps);
+		            	System.out.print(maxCalc.calculateMaxEpley(weight, reps));
 		            }else if(checker.equals("Bryzcki")){
 		            	maxCalc.calculateMaxBryzcki(weight, reps);
+		            	System.out.print(maxCalc.calculateMaxBryzcki(weight, reps));
 		            }
 		        }
 		    });
-			
+		topPanel.revalidate();
 		mainFrame.getContentPane().add(topPanel);
 			}
 			
